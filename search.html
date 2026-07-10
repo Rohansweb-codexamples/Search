@@ -8,120 +8,97 @@
 <script async src="https://cse.google.com/cse.js?cx=92604223b5a784f45"></script>
 
 <style>
+:root{
+    --accent:#4caf50;
+}
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-background:#fff;
+    background:white;
 }
 
-.topbar{
-padding:20px;
-display:flex;
-align-items:center;
-gap:25px;
-border-bottom:1px solid #eee;
-position:sticky;
-top:0;
-background:white;
-z-index:100;
+/* Header */
+.header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:white;
+    border-bottom:1px solid #e5e5e5;
+    padding:15px 25px;
+
+    display:flex;
+    align-items:center;
+    gap:25px;
 }
 
-.logo{
-height:70px;
+.logo img{
+    height:90px;
+    width:auto;
 }
 
 .search-wrap{
-flex:1;
-max-width:1400px;
+    flex:1;
 }
 
+/* Results */
 .results{
-max-width:1500px;
-margin:auto;
-padding:25px;
+    max-width:1800px;
+    margin:auto;
+    padding:25px;
 }
 
 .gsc-control-cse,
 .gsc-control-wrapper-cse{
-border:none !important;
-background:transparent !important;
+    border:none !important;
+    background:transparent !important;
 }
 
 .gsc-input-box{
-border-radius:40px !important;
+    border-radius:50px !important;
 }
 
 .gsc-search-button-v2{
-border-radius:50% !important;
-background:#4caf50 !important;
-border:none !important;
+    background:var(--accent) !important;
+    border:none !important;
+    border-radius:50% !important;
+}
+
+.gs-title{
+    font-size:20px !important;
+}
+
+.gs-title a{
+    color:#1a0dab !important;
+}
+
+.gsc-result{
+    padding:12px 0 !important;
 }
 </style>
 </head>
 <body>
 
-<div class="topbar">
+<div class="header">
 
-<a href="index.html">
-<img
-class="logo"
-src="https://projects.rohansweb.co.uk/logo.png"
-alt="Rohans Web Search">
-</a>
+    <a class="logo" href="index.html">
+        <img src="https://projects.rohansweb.co.uk/logo.png" alt="Rohans Web Search">
+    </a>
 
-<div class="search-wrap">
-<div class="gcse-searchbox"></div>
-</div>
+    <div class="search-wrap">
+        <div class="gcse-searchbox-only"></div>
+    </div>
 
 </div>
 
 <div class="results">
-<div class="gcse-searchresults"></div>
+    <div class="gcse-searchresults-only"></div>
 </div>
-
-<script>
-const params =
-new URLSearchParams(location.search);
-
-const query =
-params.get("q");
-
-window.__gcse = {
-parsetags: "explicit"
-};
-
-window.addEventListener("load", () => {
-
-const check = setInterval(() => {
-
-if(
-window.google &&
-google.search &&
-google.search.cse
-){
-
-clearInterval(check);
-
-const element =
-google.search.cse.element.getElement(
-google.search.cse.element.getAllElements()[0].gname
-);
-
-if(element && query){
-element.execute(query);
-}
-
-}
-
-},300);
-
-});
-</script>
 
 </body>
 </html>
