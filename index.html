@@ -4,214 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rohans Web Search</title>
-
 <script async src="https://cse.google.com/cse.js?cx=92604223b5a784f45"></script>
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
 <style>
-:root{
-    --accent:#4caf50;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-html,body{
-    height:100%;
-}
-
-body{
-    overflow:hidden;
-}
-
-/* Spring Video */
-.video-bg{
-    position:fixed;
-    inset:0;
-    z-index:-2;
-}
-
-.video-bg video{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.25);
-    z-index:-1;
-}
-
-/* Logo */
-.logo{
-    position:fixed;
-    top:20px;
-    left:20px;
-    z-index:100;
-}
-
-.logo img{
-    width:140px;
-    height:auto;
-}
-
-/* Settings */
-.settings-btn{
-    position:fixed;
-    top:20px;
-    right:20px;
-    z-index:100;
-    background:white;
-    border:none;
-    border-radius:12px;
-    padding:12px 18px;
-    cursor:pointer;
-    font-size:14px;
-}
-
-.settings{
-    position:fixed;
-    top:70px;
-    right:20px;
-    width:220px;
-    background:white;
-    border-radius:15px;
-    padding:15px;
-    display:none;
-    z-index:100;
-}
-
-.settings select{
-    width:100%;
-    padding:10px;
-}
-
-/* Search Area */
-.hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
-
-.search-wrap{
-    width:min(1400px,95vw);
-}
-
-/* Google Search Styling */
-.gsc-control-cse,
-.gsc-control-wrapper-cse{
-    background:transparent !important;
-    border:none !important;
-}
-
-.gsc-search-box{
-    margin:0 !important;
-}
-
-.gsc-input-box{
-    border:none !important;
-    border-radius:50px !important;
-    padding:12px !important;
-    background:white !important;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
-
-.gsc-search-button-v2{
-    background:var(--accent) !important;
-    border:none !important;
-    border-radius:50% !important;
-}
-
-/* Neon Theme */
-body.neon .overlay{
-    background:rgba(0,0,0,.65);
-}
-
-body.neon .video-bg{
-    display:none;
-}
-
-body.neon{
-    background-image:url('https://projects.rohansweb.co.uk/Scoreboard/ChatGPT%20Image%20Jul%207,%202026,%2006_24_10%20AM.png');
-    background-size:cover;
-    background-position:center;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{height:100vh;overflow:hidden}
+.video-bg{position:fixed;inset:0;z-index:-2}
+video{width:100%;height:100%;object-fit:cover}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:-1}
+.logo{position:fixed;top:15px;left:15px}
+.logo img{width:120px}
+.settings{position:fixed;top:15px;right:15px;color:#fff;text-decoration:none}
+.hero{height:100vh;display:flex;justify-content:center;align-items:center}
+.search-wrap{width:min(1800px,98vw)}
+.gsc-control-cse,.gsc-control-wrapper-cse{background:transparent!important;border:none!important}
 </style>
 </head>
 <body>
-
-<div class="video-bg">
-    <video autoplay muted loop playsinline>
-        <source src="https://projects.rohansweb.co.uk/download%20(3).mp4" type="video/mp4">
-    </video>
-</div>
-
+<div class="video-bg"><video autoplay muted loop playsinline><source src="https://projects.rohansweb.co.uk/download%20(3).mp4" type="video/mp4"></video></div>
 <div class="overlay"></div>
-
-<a class="logo" href="index.html">
-    <img src="https://projects.rohansweb.co.uk/logo.png" alt="Rohans Web Search">
-</a>
-
-<button class="settings-btn" onclick="toggleSettings()">
-    Settings
-</button>
-
-<div class="settings" id="settings">
-    <select id="theme">
-        <option value="spring">Spring Theme</option>
-        <option value="neon">Neon Theme</option>
-    </select>
-</div>
-
+<a class="logo" href="index.html"><img src="https://projects.rohansweb.co.uk/logo.png"></a>
+<a class="settings" href="settings.html"><span class="material-symbols-rounded">settings</span></a>
 <div class="hero">
-
-    <div class="search-wrap">
-
-        <div
-            class="gcse-searchbox-only"
-            data-resultsUrl="search.html">
-        </div>
-
-    </div>
-
+<div class="search-wrap">
+<div class="gcse-searchbox-only" data-resultsUrl="search.html"></div>
 </div>
-
-<script>
-function toggleSettings(){
-    const panel = document.getElementById("settings");
-    panel.style.display =
-        panel.style.display === "block"
-        ? "none"
-        : "block";
-}
-
-const themeSelect = document.getElementById("theme");
-
-function applyTheme(theme){
-    document.body.className =
-        theme === "neon"
-        ? "neon"
-        : "";
-    localStorage.setItem("rws-theme",theme);
-}
-
-const saved =
-    localStorage.getItem("rws-theme") || "spring";
-
-themeSelect.value = saved;
-applyTheme(saved);
-
-themeSelect.addEventListener("change",()=>{
-    applyTheme(themeSelect.value);
-});
-</script>
-
+</div>
 </body>
 </html>
