@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Results - Rohans Web Search</title>
+
+<script async src="https://cse.google.com/cse.js?cx=92604223b5a784f45"></script>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#fff;
+}
+
+.topbar{
+padding:20px;
+display:flex;
+align-items:center;
+gap:25px;
+border-bottom:1px solid #eee;
+position:sticky;
+top:0;
+background:white;
+z-index:100;
+}
+
+.logo{
+height:70px;
+}
+
+.search-wrap{
+flex:1;
+max-width:1400px;
+}
+
+.results{
+max-width:1500px;
+margin:auto;
+padding:25px;
+}
+
+.gsc-control-cse,
+.gsc-control-wrapper-cse{
+border:none !important;
+background:transparent !important;
+}
+
+.gsc-input-box{
+border-radius:40px !important;
+}
+
+.gsc-search-button-v2{
+border-radius:50% !important;
+background:#4caf50 !important;
+border:none !important;
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+
+<a href="index.html">
+<img
+class="logo"
+src="https://projects.rohansweb.co.uk/logo.png"
+alt="Rohans Web Search">
+</a>
+
+<div class="search-wrap">
+<div class="gcse-searchbox"></div>
+</div>
+
+</div>
+
+<div class="results">
+<div class="gcse-searchresults"></div>
+</div>
+
+<script>
+const params =
+new URLSearchParams(location.search);
+
+const query =
+params.get("q");
+
+window.__gcse = {
+parsetags: "explicit"
+};
+
+window.addEventListener("load", () => {
+
+const check = setInterval(() => {
+
+if(
+window.google &&
+google.search &&
+google.search.cse
+){
+
+clearInterval(check);
+
+const element =
+google.search.cse.element.getElement(
+google.search.cse.element.getAllElements()[0].gname
+);
+
+if(element && query){
+element.execute(query);
+}
+
+}
+
+},300);
+
+});
+</script>
+
+</body>
+</html>
