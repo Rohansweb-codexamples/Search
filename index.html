@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohans Web Search</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+min-height:100vh;
+overflow:hidden;
+}
+
+.video-bg{
+position:fixed;
+inset:0;
+z-index:-2;
+}
+
+.video-bg video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.25);
+z-index:-1;
+}
+
+.settings{
+position:fixed;
+top:20px;
+right:20px;
+z-index:100;
+}
+
+.settings button{
+padding:12px 18px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-size:15px;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.logo{
+width:min(700px,90vw);
+max-width:700px;
+}
+
+.search-form{
+width:min(1200px,95vw);
+margin-top:30px;
+}
+
+.search-box{
+width:100%;
+height:72px;
+border:none;
+border-radius:50px;
+padding:0 30px;
+font-size:24px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+outline:none;
+}
+
+.search-btn{
+margin-top:15px;
+padding:14px 30px;
+border:none;
+border-radius:14px;
+background:#4caf50;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="video-bg">
+<video autoplay muted loop playsinline>
+<source src="https://projects.rohansweb.co.uk/download%20(3).mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="overlay"></div>
+
+<div class="hero">
+
+<img
+class="logo"
+src="https://projects.rohansweb.co.uk/logo.png"
+alt="Rohans Web Search">
+
+<form
+class="search-form"
+action="search.html">
+
+<input
+class="search-box"
+type="text"
+name="q"
+placeholder="Search the web..."
+required>
+
+</form>
+
+</div>
+
+</body>
+</html>
