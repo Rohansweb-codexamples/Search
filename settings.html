@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings - Rohans Web Search</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#222;
+}
+
+.header{
+    background:white;
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #ddd;
+}
+
+.logo{
+    height:60px;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#333;
+    margin-left:15px;
+}
+
+.container{
+    max-width:1000px;
+    margin:30px auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+.setting{
+    margin:14px 0;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+}
+
+select{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+
+.toggle{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+input[type="checkbox"]{
+    width:20px;
+    height:20px;
+}
+
+button{
+    background:#4285f4;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.preview{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:10px;
+}
+
+.theme{
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    color:white;
+}
+
+.spring{background:linear-gradient(135deg,#6ccf7d,#a8e063);}
+.neon{background:linear-gradient(135deg,#ff00ff,#00e5ff);}
+.dark{background:#222;}
+.light{background:#ddd;color:#222;}
+.ocean{background:linear-gradient(135deg,#0077ff,#00d4ff);}
+.sunset{background:linear-gradient(135deg,#ff7b00,#ff3d77);}
+.forest{background:linear-gradient(135deg,#145a32,#2ecc71);}
+.space{background:linear-gradient(135deg,#090979,#000000);}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <img src="https://projects.rohansweb.co.uk/logo.png" class="logo">
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="search.html">Search</a>
+    </div>
+</div>
+
+<div class="container">
+
+<div class="card">
+    <h2>Theme</h2>
+
+    <div class="setting">
+        <label>Select Theme</label>
+        <select id="theme">
+            <option value="spring">Spring</option>
+            <option value="neon">Neon</option>
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="ocean">Ocean</option>
+            <option value="sunset">Sunset</option>
+            <option value="forest">Forest</option>
+            <option value="space">Space</option>
+        </select>
+    </div>
+
+    <div class="preview">
+        <div class="theme spring">Spring</div>
+        <div class="theme neon">Neon</div>
+        <div class="theme dark">Dark</div>
+        <div class="theme light">Light</div>
+        <div class="theme ocean">Ocean</div>
+        <div class="theme sunset">Sunset</div>
+        <div class="theme forest">Forest</div>
+        <div class="theme space">Space</div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Appearance</h2>
+
+    <div class="setting toggle">
+        <span>Blur Effects</span>
+        <input type="checkbox" id="blur">
+    </div>
+
+    <div class="setting toggle">
+        <span>Rounded Corners</span>
+        <input type="checkbox" id="rounded" checked>
+    </div>
+
+    <div class="setting toggle">
+        <span>Animated Backgrounds</span>
+        <input type="checkbox" id="animated" checked>
+    </div>
+
+    <div class="setting toggle">
+        <span>Show Footer</span>
+        <input type="checkbox" id="footer" checked>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Search</h2>
+
+    <div class="setting toggle">
+        <span>Open Results In New Tab</span>
+        <input type="checkbox" id="newtab">
+    </div>
+
+    <div class="setting toggle">
+        <span>Sticky Search Bar</span>
+        <input type="checkbox" id="sticky" checked>
+    </div>
+
+    <div class="setting toggle">
+        <span>Compact Results</span>
+        <input type="checkbox" id="compact">
+    </div>
+</div>
+
+<div class="card">
+    <button onclick="saveSettings()">Save Settings</button>
+</div>
+
+</div>
+
+<script>
+function saveSettings(){
+    const settings = {
+        theme: document.getElementById('theme').value,
+        blur: document.getElementById('blur').checked,
+        rounded: document.getElementById('rounded').checked,
+        animated: document.getElementById('animated').checked,
+        footer: document.getElementById('footer').checked,
+        newtab: document.getElementById('newtab').checked,
+        sticky: document.getElementById('sticky').checked,
+        compact: document.getElementById('compact').checked
+    };
+
+    localStorage.setItem('rwsSettings', JSON.stringify(settings));
+    alert('Settings saved');
+}
+
+const saved = JSON.parse(localStorage.getItem('rwsSettings') || '{}');
+
+if(saved.theme) document.getElementById('theme').value = saved.theme;
+if(saved.blur !== undefined) document.getElementById('blur').checked = saved.blur;
+if(saved.rounded !== undefined) document.getElementById('rounded').checked = saved.rounded;
+if(saved.animated !== undefined) document.getElementById('animated').checked = saved.animated;
+if(saved.footer !== undefined) document.getElementById('footer').checked = saved.footer;
+if(saved.newtab !== undefined) document.getElementById('newtab').checked = saved.newtab;
+if(saved.sticky !== undefined) document.getElementById('sticky').checked = saved.sticky;
+if(saved.compact !== undefined) document.getElementById('compact').checked = saved.compact;
+</script>
+
+</body>
+</html>
